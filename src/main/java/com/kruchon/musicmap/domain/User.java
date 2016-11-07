@@ -1,6 +1,8 @@
 package com.kruchon.musicmap.domain;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "USER")
@@ -17,11 +19,10 @@ public class User implements Serializable {
 
  private String vkIdLine;
 
- public String getvkIdLine() {
+ public String getVkIdLine() {
   return vkIdLine;
  }
-
- public void setvkIdLine(String vkIdLine) {
+ public void setVkIdLine(String vkIdLine) {
   this.vkIdLine = vkIdLine;
  }
 
