@@ -53,13 +53,16 @@
 <div id="main">
 	<div id="header">
 		<div class="btn-group" role="group" aria-label="...">
-		<c:url var="saveUrl" value="/musicmap/main/start" />
-		<form:form modelAttribute="userAttribute" method="POST" action="${saveUrl}">
-			<form:input type="hidden" path="vkIdLine" id="vkIdLine"/>
-			<input type="submit" value="Send" class="btn btn-default" />
-			<button type="button" class="btn btn-default" id="findMe">Find me</button>
-			<button type="button" class="btn btn-default" id="getAudio">Get audio</button>
-		</form:form>
+			<c:url var="saveUrl" value="/musicmap/main/start" />
+			<form:form modelAttribute="userDataAttribute" method="POST" action="${saveUrl}">
+				<form:input type="hidden" path="vkIdLine" id="vkIdLine"/>
+				<form:input type="hidden" path="x" id="x"/>
+				<form:input type="hidden" path="y" id="y"/>
+				<form:input type="hidden" path="songs" id="songs"/>
+				<button type="button" class="btn btn-default" id="findMe">Find me</button>
+				<button type="button" class="btn btn-default" id="getAudio">Get audio</button>
+				<input type="submit" value="Send" class="btn btn-default" />
+			</form:form>
 		</div>
 
 	</div>
@@ -89,9 +92,10 @@
 					result.geoObjects.options.set('preset', 'islands#blueCircleIcon');
 					if (result.geoObjects.accuracy < 2000) {
 						myMap.geoObjects.add(result.geoObjects);
-						document.getElementById('coords').value = result.geoObjects.get(0).geometry.getCoordinates();
+						document.getElementById('x').value = result.geoObjects.get(0).geometry.getCoordinates()[0];
+						document.getElementById('y').value = result.geoObjects.get(0).geometry.getCoordinates()[1];
 					} else {
-						document.getElementById('coords').value = 'low accuracy';
+						document.getElementById('x').value = 'low accuracy';
 					}
 				});
 
@@ -117,7 +121,7 @@
 							function (result) {
 								result.response.shift();
 								var str = JSON.stringify(result.response, ["aid", "artist", "genre"]);
-								document.getElementById('audios').value = str;
+								document.getElementById('songs').value = str;
 							});
 					VK.Auth.revokeGrants();
 				}

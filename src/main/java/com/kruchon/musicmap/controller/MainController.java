@@ -1,5 +1,6 @@
 package com.kruchon.musicmap.controller;
 
+import com.kruchon.musicmap.domain.UserData;
 import org.apache.log4j.Logger;
 import com.kruchon.musicmap.domain.User;
 import com.kruchon.musicmap.service.MusicMapService;
@@ -21,16 +22,15 @@ public class MainController {
     private MusicMapService musicMapService;
 
     @RequestMapping(value = "/start", method = RequestMethod.GET)
-    public String getAdd(Model model) {
+    public String sendStartPage(Model model) {
         logger.debug("Received request to show start page");
-        model.addAttribute("userAttribute", new User());
+        model.addAttribute("userDataAttribute", new UserData());
         return "start";
     }
 
     @RequestMapping(value = "/start", method = RequestMethod.POST)
-    public String add(@ModelAttribute("userAttribute") User user) {
-        logger.debug("Received request to add new user");
-        musicMapService.add(user);
+    public String getData(@ModelAttribute("userDataAttribute") UserData userData) {
+        logger.debug("Received request to add new user" + userData);
         return "start";
     }
 

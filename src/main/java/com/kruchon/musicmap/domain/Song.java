@@ -12,7 +12,7 @@ public class Song implements Serializable {
 
     @Id
     @Column(name = "ID")
-    Integer id;
+    private Long id;
 
     @Column(name = "SINGER")
     private String singer;
@@ -20,6 +20,7 @@ public class Song implements Serializable {
     public String getSinger() {
         return singer;
     }
+
     public void setSinger(String singer) {
         this.singer= singer;
     }
@@ -28,11 +29,11 @@ public class Song implements Serializable {
         return serialVersionUID;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

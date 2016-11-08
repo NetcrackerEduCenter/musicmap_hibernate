@@ -12,7 +12,7 @@ public class Location implements Serializable {
 
     @Id
     @Column(name = "ID")
-    Integer id;
+    private Long id;
 
     @Column(name = "TITLE")
     private String title;
@@ -28,11 +28,11 @@ public class Location implements Serializable {
         this.title= title;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
